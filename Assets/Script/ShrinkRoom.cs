@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class ShrinkRoom : MonoBehaviour
 {
-    public Transform leftWall;
-    public Transform rightWall;
-    public float shrinkSpeed = 2f;
-    public float minDistance = 1f;
+    public Transform leftWall; // left side wall
+    public Transform rightWall; // right side wall
+    public float shrinkSpeed = 2f; // speed of wall movement
+    public float minDistance = 1f; // min distance of wall
 
 
     void Update()
