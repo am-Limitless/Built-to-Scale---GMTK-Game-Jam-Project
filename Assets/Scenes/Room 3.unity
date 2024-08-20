@@ -3704,7 +3704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9873475796de48f4cbb38a0ed1822968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Room 3
+  sceneName: Menu
   delay: 2
   fadeAnimator: {fileID: 0}
 --- !u!65 &1645901968

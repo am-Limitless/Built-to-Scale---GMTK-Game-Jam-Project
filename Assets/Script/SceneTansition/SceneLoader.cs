@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     // Public string variable to be set in the Inspector
-    public string sceneName;
+    private string sceneName = "Room 1";
 
     // Method to load the scene
     public void LoadScene()
@@ -14,6 +14,7 @@ public class SceneLoader : MonoBehaviour
         {
             // Load the scene by name
             SceneManager.LoadScene(sceneName);
+            Debug.Log("hI hELLO");
         }
         else
         {
@@ -27,6 +28,6 @@ public class SceneLoader : MonoBehaviour
         // Quit the application
         Application.Quit();
 
- 
+
     }
 }
