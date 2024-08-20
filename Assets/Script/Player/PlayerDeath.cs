@@ -7,6 +7,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject leftWall;
     public GameObject rightWall;
     public GameObject player;
+    public GameObject playerDeathPannel;
 
     private Collider playerCollider;
     private Collider leftCollider;
@@ -41,7 +42,7 @@ public class PlayerDeath : MonoBehaviour
     void KillPlayer()
     {
         Debug.Log("Player is dead");
-
+        playerDeathPannel.SetActive(true);
         Destroy(player);
     }
 }
