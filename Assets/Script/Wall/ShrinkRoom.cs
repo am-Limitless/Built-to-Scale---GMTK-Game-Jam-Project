@@ -19,6 +19,9 @@ public class ShrinkRoom : MonoBehaviour
 
     IEnumerator ShrinkWallsAtIntervals()
     {
+        // Wait for 30 seconds before starting the wall shrink process
+        yield return new WaitForSeconds(35f);
+
         while (true)
         {
             float currentDistance = Vector3.Distance(leftWall.position, rightWall.position);

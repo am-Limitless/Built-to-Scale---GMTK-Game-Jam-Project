@@ -8,6 +8,7 @@ public class ShrinkRoom2 : MonoBehaviour
     public float shrinkSpeed = 2f; // speed of wall movement
     public float minDistance = 1f; // min distance between walls
     public float interval = 3f; // interval in seconds between wall movements
+    public float startDelay = 35f; // delay before the first movement
     public AudioSource audioSource; // Reference to the AudioSource component
 
     void Start()
@@ -17,6 +18,9 @@ public class ShrinkRoom2 : MonoBehaviour
 
     IEnumerator ShrinkWallAtIntervals()
     {
+        // Wait for the initial delay before starting the shrinking process
+        yield return new WaitForSeconds(startDelay);
+
         while (true)
         {
             float currentDistance = Vector3.Distance(leftWall.position, rightWall.position);
@@ -48,7 +52,7 @@ public class ShrinkRoom2 : MonoBehaviour
                 audioSource.Stop();
             }
 
-            // Wait for 3 seconds before the next movement
+            // Wait for the specified interval before the next movement
             yield return new WaitForSeconds(interval);
         }
     }

@@ -8,11 +8,21 @@ public class ShrinkRoom1 : MonoBehaviour
     public float shrinkSpeed = 2f; // speed of wall movement
     public float minDistance = 1f; // min distance between walls
     public float interval = 3f; // interval in seconds between wall movements
+    public float startDelay = 35f; // delay before starting the wall movement
     public AudioSource audioSource; // Reference to the AudioSource component
 
     void Start()
     {
-        StartCoroutine(ShrinkWallAtIntervals()); // Start the coroutine
+        StartCoroutine(StartShrinkingAfterDelay()); // Start the coroutine with a delay
+    }
+
+    IEnumerator StartShrinkingAfterDelay()
+    {
+        // Wait for the specified delay before starting the wall movement
+        yield return new WaitForSeconds(startDelay);
+
+        // Start the shrinking coroutine
+        StartCoroutine(ShrinkWallAtIntervals());
     }
 
     IEnumerator ShrinkWallAtIntervals()
@@ -48,7 +58,7 @@ public class ShrinkRoom1 : MonoBehaviour
                 audioSource.Stop();
             }
 
-            // Wait for 3 seconds before the next movement
+            // Wait for the interval before the next movement
             yield return new WaitForSeconds(interval);
         }
     }
