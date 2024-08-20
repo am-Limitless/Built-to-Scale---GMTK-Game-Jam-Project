@@ -1,52 +1,57 @@
 using UnityEngine;
+using TMPro;
 
 public class PickUp : MonoBehaviour
 {
-    [SerializeField] private Transform playerCameraTransform; //player camera
-    [SerializeField] private float pickUpDistance = 5f;       //min distamce to pickup objects
-    [SerializeField] private LayerMask pickUpLayerMask;       //layer mask for pickable abjects
+    [SerializeField] private Transform playerCameraTransform; // Player camera
+    [SerializeField] private float pickUpDistance = 5f;       // Min distance to pick up objects
+    [SerializeField] private LayerMask pickUpLayerMask;       // Layer mask for pickable objects
+    [SerializeField] private Transform objectGrabPointTransform; // Grab point for picked objects
+    [SerializeField] private TextMeshProUGUI pickUpTextUI;    // Reference to the TextMeshPro UI element
 
-    [SerializeField] private Transform objectGrabPointTransform;
+    private ObjectGrabable currentObjectGrabable;             // Reference to the currently grabbed object
 
-    private ObjectGrabable objectGrabable;                    // reference to object grabbable script
-
-
-    // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(playerCameraTransform.transform.position, playerCameraTransform.forward * pickUpDistance, Color.red);    //visualize ray
+        Debug.DrawRay(playerCameraTransform.position, playerCameraTransform.forward * pickUpDistance, Color.red); // Visualize ray
 
-        //checking for Input and Raycast to identify objects
-        if (Input.GetKeyDown(KeyCode.E))
+        // Check if holding an object
+        if (currentObjectGrabable != null)
         {
-            if (objectGrabable == null)    //not carrying any object
+            // Drop the object if already holding one and E is pressed
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHist, pickUpDistance, pickUpLayerMask))
+                currentObjectGrabable.Drop();
+                currentObjectGrabable = null;
+                pickUpTextUI.enabled = false; // Hide the text when the object is dropped
+            }
+            return;
+        }
+
+        // Checking for Raycast to identify objects
+        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
+        {
+            // If we hit an object that can be grabbed, display the pickup UI text
+            if (raycastHit.transform.TryGetComponent(out ObjectGrabable objectGrabable))
+            {
+                pickUpTextUI.enabled = true; // Show the text
+
+                // Check for input to pick up the object
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("pickup ray" + raycastHist.transform);
-
-                    if (raycastHist.transform.TryGetComponent(out objectGrabable))
-                    {
-                        Debug.Log(objectGrabable);
-
-                        objectGrabable.Grab(objectGrabPointTransform);
-                    }
+                    objectGrabable.Grab(objectGrabPointTransform);
+                    currentObjectGrabable = objectGrabable; // Store reference to the grabbed object
+                    pickUpTextUI.enabled = false; // Hide the text after the object is picked up
                 }
             }
             else
             {
-                objectGrabable.Drop();
-                objectGrabable = null;
+                pickUpTextUI.enabled = false; // Hide the text if no valid object is found
             }
         }
-
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    if (objectGrabable != null)
-        //    {
-        //        objectGrabable.Drop();
-        //        objectGrabable = null;
-        //    }
-        //}
+        else
+        {
+            pickUpTextUI.enabled = false; // Hide the text if no object is in range
+        }
     }
 }
