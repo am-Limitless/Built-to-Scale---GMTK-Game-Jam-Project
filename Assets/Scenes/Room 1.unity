@@ -4948,6 +4948,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8112923302912398596, guid: b192587788aa0b049b4f7e6ec5da5cbc, type: 3}
+      propertyPath: m_TagString
+      value: Key
+      objectReference: {fileID: 0}
     - target: {fileID: 8900331552002070803, guid: b192587788aa0b049b4f7e6ec5da5cbc, type: 3}
       propertyPath: m_Layer
       value: 6

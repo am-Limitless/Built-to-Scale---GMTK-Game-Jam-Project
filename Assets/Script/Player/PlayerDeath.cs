@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject rightWall;
     public GameObject player;
     public GameObject playerDeathPannel;
+    public float interval = 3f;
 
     private Collider playerCollider;
     private Collider leftCollider;
@@ -43,6 +46,13 @@ public class PlayerDeath : MonoBehaviour
     {
         Debug.Log("Player is dead");
         playerDeathPannel.SetActive(true);
+        StartCoroutine(SceneLoader());
         Destroy(player);
+    }
+
+    IEnumerator SceneLoader()
+    {
+        yield return new WaitForSeconds(interval);
+        SceneManager.LoadScene("Menu");
     }
 }
