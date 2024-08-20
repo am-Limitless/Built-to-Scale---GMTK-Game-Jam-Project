@@ -1293,9 +1293,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3498322100683057776, guid: f91743800f2ab3740ac9db4eedb46f2d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 686600176}
-    - targetCorrespondingSourceObject: {fileID: 3498322100683057776, guid: f91743800f2ab3740ac9db4eedb46f2d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 686600175}
   m_SourcePrefab: {fileID: 100100000, guid: f91743800f2ab3740ac9db4eedb46f2d, type: 3}
 --- !u!4 &567741801 stripped
@@ -1455,7 +1452,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 378069b82aacd1547b8c8dbf8e38794a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.75
   m_Pitch: 1
@@ -1541,21 +1538,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &686600176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567741802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce2a3719e5bd6e488dc96f6433229b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 686600175}
-  firstClip: {fileID: 8300000, guid: 63badcc297067aa44b1e7343f5a6a98d, type: 3}
-  secondClip: {fileID: 8300000, guid: 378069b82aacd1547b8c8dbf8e38794a, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,6 +2552,7 @@ MonoBehaviour:
   rightWall: {fileID: 1064586920}
   player: {fileID: 2029529032}
   playerDeathPannel: {fileID: 56247825}
+  interval: 3
 --- !u!1 &1174151038
 GameObject:
   m_ObjectHideFlags: 0
