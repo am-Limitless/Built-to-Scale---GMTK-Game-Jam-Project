@@ -22,6 +22,8 @@ public class PlayerDeath : MonoBehaviour
         playerCollider = player.GetComponent<Collider>();
         leftCollider = leftWall.GetComponent<Collider>();
         rightCollider = rightWall.GetComponent<Collider>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -48,6 +50,8 @@ public class PlayerDeath : MonoBehaviour
         playerDeathPannel.SetActive(true);
         StartCoroutine(SceneLoader());
         Destroy(player);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     IEnumerator SceneLoader()
